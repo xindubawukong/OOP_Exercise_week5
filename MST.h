@@ -3,7 +3,9 @@
 #define MST_h
 class MST {
 public:
-	void computeMST(Graph &g);
-	void computeTopKMST(Graph &g, int K);
+	int n;// 
+	Edge e_mst[23];
+	void computeMST(Graph &g,bool flag=true);// I think this function is better to be "static MST computeMST(Graph &g)", but it reflicts the .pdf document.
+	void computeTopKMST(Graph &g, int K);// the same as above.
 };
 #endif

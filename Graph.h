@@ -8,6 +8,6 @@ public:
 	int n, m;
 	Point a[23];
 	Edge e[23 * 23];
-	void insert(Point P);
+	void insert(double x,double y);
 };
 #endif

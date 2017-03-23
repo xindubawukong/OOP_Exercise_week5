@@ -1,7 +1,6 @@
 #include"MST.h"
 #include"Graph.h"
 #include"Point.h"
-#include"Edge.h"
 #include<cstdio>
 #include<cstring>
 #include<cstdlib>
@@ -31,8 +30,10 @@ double random_double(double x) {
 int main() {
 	srand(time(0));
 	Graph g;
-	for (int i = 0; i < 20; i++)
-		g.insert(Point(random_double(10000), random_double(10000)));
+	/*for (int i = 0; i < 20; i++) {
+		g.insert(random_double(10000), random_double(10000));
+	}*/
+	ifstream fin("1.in"); for (int i = 0; i < 4; i++) { int x, y; fin >> x >> y; g.insert(x, y); }
 	MST g_mst;
 	g_mst.computeMST(g);// output the minimum spanning tree of Graph g;
 	int K = 20;

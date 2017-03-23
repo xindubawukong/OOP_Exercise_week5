@@ -8,5 +8,5 @@ public:
 		x = _x, y = _y;
 	}
 };
-inline double getdist(const Point &a, const Point &b);
+double getdist(const Point &a, const Point &b);
 #endif

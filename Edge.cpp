@@ -7,3 +7,6 @@ bool operator <(const Edge &a, const Edge &b) {
 	if (a.u != b.u) return a.u < b.u;
 	return a.v < b.v;
 }
+bool operator !=(const Edge &a, const Edge &b) {
+	return a.u != b.u || a.v != b.v;
+}

@@ -28,14 +28,14 @@ double random_double(double x) {// return a random double in range of [0,x)
 int main() {
 	srand(time(0));
 	Graph g;
-	/*for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 20; i++) {
 		g.insert(random_double(10000), random_double(10000));
-	}*/
-	ifstream fin("1.in");
+	}
+	/*ifstream fin("1.in");
 	for (int i = 0; i < 4; i++) {
 		int x, y; fin >> x >> y;
 		g.insert(x, y);
-	}
+	}*/
 	MST g_mst(&g);
 	g_mst.computeMST();// output the minimum spanning tree of Graph g;
 	g_mst.output();

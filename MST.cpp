@@ -36,43 +36,42 @@ public:
 		return a.T.length > b.T.length + eps;
 	}
 };
-State tihuan(State tmp) {
+pair<State, Edge> tihuan(State tmp) {// return the next tree
+	Edge e;
+	for (set<Edge>::iterator it = tmp.T.e_mst.begin(); it != tmp.T.e_mst.end(); it++)
+		if (tmp.I.find(*it) == tmp.I.end()) {
+			e = *it;
+			break;
+		}
+	tmp.T.e_mst.erase(e);
+	BCJ *bcj = new BCJ(g->n);
+	for (set<Edge>::iterator it = tmp.T.e_mst.begin(); it != tmp.T.e_mst.end(); it++)
+		bcj->hebing((*it).u, (*it).v);
+	for (set<Edge>::iterator it = tmp.T.g->e.begin(); it != tmp.T.g->e.end(); it++)
+		if ()
 }
 void MST::computeTopKMST(int K) {
 	vector<State> ans;
-	priority_queue< pair<double, int> >Q;
+	priority_queue< pair<pair<State, Edge>, int> > Q;
 	State tmp;
 	tmp.T = *this;
 	ans.push_back(tmp);
-	Q.push(make_pair<tihuan(ans).T.length, 0>);
+	Q.push(make_pair(tihuan(tmp), 0));
 	while (!Q.empty()) {
-		tmp = Q.top().first;
+		tmp = Q.top().first.first;// get the minimum length from the available trees.
+		Edge e = Q.top().first.second;
+		int t = Q.top().second;
 		Q.pop();
 		ans.push_back(tmp);
-		Q.push(make_pair < tihuan(tmp), ans.size() - 1>);
+		if (ans.size() == K) break;
+		pair<State, Edge> tmp2 = tihuan(tmp);
+		if (tmp2.second.u != 0)
+			Q.push(make_pair(tihuan(tmp), ans.size() - 1));
+		ans[t].I.insert(e);
+		tmp2 = tihuan(ans[t]);
+		if (tmp2.second.u != 0)
+			Q.push(make_pair(tihuan(tmp), t));
 	}
-	/*
-	if (ans.size() == K) break;
-	if (tmp.I.size() == g->n) continue;
-	Edge e;
-	for (set<Edge>::iterator it = tmp.T.e_mst.begin(); it != tmp.T.e_mst.end(); it++)
-	if (tmp.I.find(*it) == tmp.I.end()) {
-	e = *it;
-	break;
-	}
-	tmp.I.insert(e);
-	Q.push(tmp);
-	tmp.I.erase(e);
-	for (set<Edge>::iterator it = g->e.begin(); it != g->e.end(); it++)
-	if (tmp.T.e_mst.find(*it) == tmp.T.e_mst.end() && tmp.X.find(*it) == tmp.X.end()) {
-	tmp.T.length = tmp.T.length - e.w + (*it).w;
-	tmp.T.e_mst.erase(e);
-	tmp.T.e_mst.insert(*it);
-	tmp.X.insert(e);
-	Q.push(tmp);
-	break;
-	}
-	*/
 	printf("\n\nThe top %d minimum spanning trees are:\n", min(K, (int)ans.size()));
 	for (int i = 0; i < min(K, (int)ans.size()); i++) {
 		cout << "  the spanning tree is: " << ans[i].T.length << endl;

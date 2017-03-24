@@ -8,5 +8,6 @@ int BCJ::getfa(int x) {
 	return fa[x] = getfa(fa[x]);
 }
 void BCJ::hebing(int x, int y) {
-	fa[getfa(x)] = getfa(y);
+	x = getfa(x), y = getfa(y);
+	if (x != y) fa[x] = y;
 }
